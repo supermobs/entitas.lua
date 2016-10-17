@@ -1,0 +1,16 @@
+ecs.system.create("test.printtime")
+:setinitialize(function(self)
+	log.i(os.time())
+end)
+:setexecute(function(self)
+	log.i(os.time())
+end)
+
+
+ecs.system.create("test.counter")
+:setinitialize(function(self)
+	self.group = self.pool:getgroup(ecs.matcher.resource)
+end)
+:setexecute(function(self)
+	log.d("resource count " .. self.group.entities.count)
+end)
